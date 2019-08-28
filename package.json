@@ -1,0 +1,32 @@
+{
+  "name": "aria2c",
+  "version": "0.0.1",
+  "description": "aria2 rpc library in Node.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "aria2",
+    "aria2c",
+    "download"
+  ],
+  "author": "lsong",
+  "license": "MIT",
+  "dependencies": {
+    "ws": "^7.1.2",
+    "xttp": "latest"
+  },
+  "directories": {
+    "example": "example"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/song940/aria2.git"
+  },
+  "bugs": {
+    "url": "https://github.com/song940/aria2/issues"
+  },
+  "homepage": "https://github.com/song940/aria2#readme"
+}

@@ -1,40 +1,22 @@
-const http = require('http');
-const { URI } = require('url');
-const EventEmitter = require('events');
+require('isomorphic-fetch');
 
-const readStream = stream => {
-  const buffer = [];
-  return new Promise((resolve, reject) => {
-    stream
-      .on('error', reject)
-      .on('data', chunk => buffer.push(chunk))
-      .on('end', () => resolve(Buffer.concat(buffer)))
-  });
-};
-
-class HTTP extends EventEmitter {
-  constructor(options){
-    super();
+class HTTP {
+  constructor(options) {
     Object.assign(this, {
       method: 'get'
     }, options);
   }
-  request(method, url, payload, headers) {
-    return new Promise((resolve, reject) => {
-      const req = http.request(url, {
-        method,
-        headers
-      }, resolve);
-      req.on('error', reject);
-      req.end(payload);
-    })
-    .then(readStream)
-    .then(JSON.parse);
+  request(method, url, body, headers) {
+    return fetch(url, {
+      method,
+      headers,
+      body
+    }).then(res => res.json());
   }
   get(query) {
     const { method, url } = this;
     const u = new URI(url);
-    for(const q of query)
+    for (const q of query)
       u.searchParams.append(q, query[q]);
     return this.request(method, u);
   }

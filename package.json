@@ -4,19 +4,15 @@
   "description": "aria2 rpc library in Node.js",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node test"
   },
   "keywords": [
     "aria2",
     "aria2c",
     "download"
   ],
-  "author": "lsong",
+  "author": "Lsong",
   "license": "MIT",
-  "dependencies": {
-    "ws": "^7.1.2",
-    "xttp": "latest"
-  },
   "directories": {
     "example": "example"
   },

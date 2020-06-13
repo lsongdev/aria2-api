@@ -19,10 +19,11 @@ class Aria2 extends JSONRPC {
    * @param {*} reject 
    */
   then(resolve, reject) {
+    const data = this.data;
+    this.data = null;
     return this
-      .send(this.data)
+      .send(data)
       .then(res => {
-        this.data = null;
         if (Array.isArray(res))
           return res.map(r => r.result);
         return res.result;

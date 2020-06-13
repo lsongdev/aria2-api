@@ -15,10 +15,10 @@ class HTTP {
   }
   get(query) {
     const { method, url } = this;
-    const u = new URI(url);
+    const u = new URL(url);
     for (const q of query)
       u.searchParams.append(q, query[q]);
-    return this.request(method, u);
+    return this.request(method, u.toString());
   }
   post(payload) {
     const { method, url } = this;

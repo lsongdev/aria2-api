@@ -1,8 +1,9 @@
 {
   "name": "aria2c",
-  "version": "0.0.3",
+  "version": "0.0.5",
   "description": "Aria2 RPC Library in Node.js",
   "main": "index.js",
+  "bin": "./bin/aria2.js",
   "scripts": {
     "test": "node test"
   },
@@ -26,6 +27,7 @@
   },
   "homepage": "https://github.com/song940/aria2#readme",
   "dependencies": {
-    "isomorphic-fetch": "^2.2.1"
+    "isomorphic-fetch": "latest",
+    "kelp-cli": "^0.0.1"
   }
 }

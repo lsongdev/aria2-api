@@ -1,9 +1,9 @@
-## aria2c
+## node-aria2
 
 [![aria2c](https://img.shields.io/npm/v/aria2c.svg)](https://npmjs.org/aria2c)
 [![Build Status](https://travis-ci.org/song940/aria2c.svg?branch=master)](https://travis-ci.org/song940/aria2c)
 
-> aria2 rpc library in Node.js
+> Aria2 RPC Library in Node.js
 
 ### Installation
 
@@ -17,18 +17,13 @@ $ npm install aria2c
 const Aria2 = require('aria2c');
 
 const aria2 = new Aria2({
-  method: 'GET',
-  secret: 'YOUR-ARIA2-TOKEN',
+  token: 'YOUR-ARIA2-TOKEN',
   url: 'http://192.168.1.1:6800/jsonrpc',
 });
 
 (async () => {
   
-  const res = await aria2
-    .getVersion()
-    .tellActive()
-    .saveSession()
-    .listMethods()
+  const res = await aria2.getVersion()
   console.log(res);
 
 })();

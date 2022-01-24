@@ -1,5 +1,16 @@
 require('isomorphic-fetch');
 
+
+const debuglog = name => {
+  const { NODE_DEBUG } = process.env;
+  return (...args) => {
+    if (NODE_DEBUG !== name) return;
+    console.debug(...args);
+  }
+};
+
+const debug = debuglog('node-aria2');
+
 class HTTP {
   constructor(options) {
     Object.assign(this, {
@@ -7,6 +18,7 @@ class HTTP {
     }, options);
   }
   request(method, url, body, headers) {
+    debug(method, url, body, headers);
     return fetch(url, {
       method,
       headers,

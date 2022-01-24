@@ -1,55 +1,39 @@
-const JSONRPC = require('./jsonrpc');
+const JSONRPC = require('./transports/jsonrpc');
 
 /**
  * Aria2
  * https://aria2.github.io/manual/en/html/aria2c.html#rpc-interface
  */
-class Aria2 extends JSONRPC {
-  constructor(options) {
-    super(Object.assign({
-      seq: 0
-    }, options));
+class Aria2 {
+  constructor({ url, token }) {
+    this.seq = 0;
+    this.token = token;
+    this.client = new JSONRPC({ url, token });
   }
   get id() {
     return this.seq++;
-  }
-  /**
-   * then
-   * @param {*} resolve 
-   * @param {*} reject 
-   */
-  then(resolve, reject) {
-    const data = this.data;
-    this.data = null;
-    return this
-      .send(data)
-      .then(res => {
-        if (Array.isArray(res))
-          return res.map(r => r.result);
-        return res.result;
-      }).then(resolve, reject);
   }
   /**
    * call
    * @param {*} method 
    * @param  {...any} params 
    */
-  call(method, ...params) {
-    const { id, secret } = this;
+  async call(method, ...params) {
+    const { id, token } = this;
     // https://aria2.github.io/manual/en/html/aria2c.html#rpc-authorization-secret-token
-    secret && params.unshift(`token:${secret}`);
+    token && params.unshift(`token:${token}`);
     // omit out undefined value
     params = params.filter(x => x !== void (0));
     const message = { id, method, params };
-    this.data = this.data ? // batch request
-      [].concat.call([], this.data, message) : message;
-    return this;
+    const res = await this.client.send(message);
+    return res.result;
   }
   /**
    * https://aria2.github.io/manual/en/html/aria2c.html#aria2.addUri
    * @param {*} uris 
    */
   addUri(uris) {
+    if (!Array.isArray(uris)) uris = [uris];
     return this.call('aria2.addUri', uris);
   }
   /**

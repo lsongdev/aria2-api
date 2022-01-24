@@ -1,17 +1,17 @@
 const Aria2 = require('..');
 
 const aria2 = new Aria2({
-  secret: 'xxxxxxxxxx',
   url: 'http://lsong.me:6800/jsonrpc',
+  token: 'xxxxxxxxxx',
 });
 
 (async () => {
-  const res = await aria2
-    .getVersion()
-    .tellActive()
+  const { version, enabledFeatures } = await aria2.getVersion();
+  console.log(version, enabledFeatures);
+
+  // .tellActive()
   // .saveSession()
   // .listMethods()
   // .getFiles()
 
-  console.log(res);
 })();

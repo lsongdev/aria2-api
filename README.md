@@ -1,4 +1,4 @@
-## node-aria2
+## aria2c
 
 [![aria2c](https://img.shields.io/npm/v/aria2c.svg)](https://npmjs.org/aria2c)
 [![Build Status](https://travis-ci.org/song940/aria2c.svg?branch=master)](https://travis-ci.org/song940/aria2c)

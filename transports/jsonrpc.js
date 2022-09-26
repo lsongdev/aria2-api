@@ -1,8 +1,8 @@
-const HTTPClient = require('./http');
+import { HTTPClient }  from './http.js';
 /**
  * JSON-RPC
  */
-class JSONRPC extends HTTPClient {
+export class JSONRPC extends HTTPClient {
   constructor(options) {
     super(Object.assign({
       jsonrpc: '2.0',
@@ -29,5 +29,3 @@ class JSONRPC extends HTTPClient {
     return this.post(payload);
   }
 }
-
-module.exports = JSONRPC;

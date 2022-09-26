@@ -1,9 +1,9 @@
-const assert = require('assert');
-const Aria2 = require('..');
+import assert from 'assert'
+import { Aria2 } from '../index.js'
 
 const aria2 = new Aria2({
   token: 'xxxxxxxxxx',
-  url: 'http://lsong.me:6800/jsonrpc',
+  url: 'http://lsong.one:6800/jsonrpc',
 });
 
 const test = async (name, fn) => {
@@ -38,5 +38,5 @@ test('aria2#tellActive', async () => {
 
 test('aria2#getGlobalStat', async () => {
   const states = await aria2.getGlobalStat();
-  // console.log(states);
+  assert.equal(typeof states, 'object');
 });

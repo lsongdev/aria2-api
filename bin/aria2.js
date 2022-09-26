@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
-const program = require('kelp-cli');
-const Aria2 = require('..');
-const { name, version } = require('../package.json');
+import * as program from 'kelp-cli';
+import { Aria2 } from '../index.js'
+import { name, version } from '../package.json';
 
 const { ARIA2_RPC, ARIA2_TOKEN } = process.env;
 const aria2 = new Aria2({

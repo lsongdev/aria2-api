@@ -1,5 +1,4 @@
-require('isomorphic-fetch');
-
+import 'isomorphic-fetch'
 
 const debuglog = name => {
   const { NODE_DEBUG } = process.env;
@@ -11,7 +10,7 @@ const debuglog = name => {
 
 const debug = debuglog('node-aria2');
 
-class HTTP {
+export class HTTPClient {
   constructor(options) {
     Object.assign(this, {
       method: 'get'
@@ -37,5 +36,3 @@ class HTTP {
     return this.request(method, url, JSON.stringify(payload));
   }
 }
-
-module.exports = HTTP;

@@ -1,10 +1,10 @@
-const JSONRPC = require('./transports/jsonrpc');
+import { JSONRPC } from './transports/jsonrpc.js';
 
 /**
  * Aria2
  * https://aria2.github.io/manual/en/html/aria2c.html#rpc-interface
  */
-class Aria2 {
+export class Aria2 {
   constructor({ url, token }) {
     this.seq = 0;
     this.token = token;
@@ -193,5 +193,3 @@ class Aria2 {
     return this.call('system.listNotifications');
   }
 }
-
-module.exports = Aria2;
